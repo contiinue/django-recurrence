@@ -721,7 +721,8 @@ recurrence.widget.RuleForm.prototype = {
             new recurrence.Rule(recurrence.YEARLY, rule_options),
             new recurrence.Rule(recurrence.MONTHLY, rule_options),
             new recurrence.Rule(recurrence.WEEKLY, rule_options),
-            new recurrence.Rule(recurrence.DAILY, rule_options)
+            new recurrence.Rule(recurrence.DAILY, rule_options),
+            new recurrence.Rule(recurrence.HOURLY, rule_options),
         ];
         this.freq_rules[this.rule.freq].update(this.rule);
 
@@ -752,7 +753,7 @@ recurrence.widget.RuleForm.prototype = {
 
         // freq
 
-        var freq_choices = recurrence.display.frequencies.slice(0, 4);
+        var freq_choices = recurrence.display.frequencies.slice(0, 5);
         var freq_options = recurrence.array.foreach(
             freq_choices, function(item, i) {
                 var option = recurrence.widget.e(
@@ -949,7 +950,8 @@ recurrence.widget.RuleForm.prototype = {
             recurrence.widget.RuleYearlyForm,
             recurrence.widget.RuleMonthlyForm,
             recurrence.widget.RuleWeeklyForm,
-            recurrence.widget.RuleDailyForm
+            recurrence.widget.RuleDailyForm,
+            recurrence.widget.RuleHorlyForm,
         ];
         var freq_forms = recurrence.array.foreach(
             forms, function(form, i) {
@@ -1076,6 +1078,7 @@ recurrence.widget.RuleForm.prototype = {
 
     update: function() {
         this.panel.set_label(this.get_display_text());
+        
         this.rule.update(this.freq_rules[this.selected_freq]);
         this.panel.widget.update();
     },
@@ -1446,6 +1449,94 @@ recurrence.widget.RuleMonthlyForm.prototype = {
 };
 
 
+
+recurrence.widget.RuleHorlyForm = function(panel, rule) {
+    this.init(panel, rule);
+};
+
+
+recurrence.widget.RuleHorlyForm.prototype = {
+    init: function(panel, rule) {
+        this.panel = panel;
+        this.rule = rule;
+
+        this.init_dom();
+    },
+
+    init_dom: function() {
+        var form = this;
+        var hours_grid = new recurrence.widget.Grid(6, 4);
+        
+
+        var selected_hours = recurrence.array.foreach(
+            this.rule.byhour, function(hour) {
+                return hour
+            }
+        );
+
+        let number = -1
+        for (var col=0; col < 4; col++) {
+            for (var row=0; row < 6; row++) {
+                number += 1
+                var cell = hours_grid.cell(row, col);
+
+                if (selected_hours.indexOf(number) > -1) {
+                    recurrence.widget.add_class(cell, 'active');
+                }
+                cell.value = number;
+                cell.innerHTML = number
+                
+                cell.onclick = function () {
+                    if (hours_grid.disabled)
+                        return;
+                    if (recurrence.widget.has_class(this, 'active'))
+                        recurrence.widget.remove_class(this, 'active');
+                    else
+                        recurrence.widget.add_class(this, 'active');
+                    form.set_byhours();
+                };
+
+            }
+        }
+    
+        var hours_container = recurrence.widget.e(
+            'div', {'class': 'section'}
+        );
+        hours_container.appendChild(hours_grid.elements.root);
+        
+        var root = recurrence.widget.e(
+            'div', {'class': 'hours hidden'}, [hours_container]
+        );
+
+        this.elements = {
+            'root': root,
+            'hours_grid': hours_grid
+        };
+    },
+
+    set_byhours: function () {
+        var byhour = [];
+        recurrence.array.foreach(
+            this.elements.hours_grid.cells, function (cell) {
+                if (recurrence.widget.has_class(cell, 'active')) {
+                    byhour.push(cell.value)
+                }
+            });
+        this.rule.byhour = byhour;
+        this.panel.update();
+    },
+
+    show: function() {
+        recurrence.widget.remove_class(this.elements.root, 'hidden');
+    },
+
+    hide: function() {
+        recurrence.widget.add_class(this.elements.root, 'hidden');
+    }
+};
+
+
+
 recurrence.widget.RuleWeeklyForm = function(panel, rule) {
     this.init(panel, rule);
 };
@@ -1485,6 +1576,7 @@ recurrence.widget.RuleWeeklyForm.prototype = {
 
         var weekday_container = recurrence.widget.e(
             'div', {'class': 'section'});
+
         weekday_container.appendChild(weekday_grid.elements.root);
         var root = recurrence.widget.e(
             'div', {'class': 'weekly hidden'}, [weekday_container]);

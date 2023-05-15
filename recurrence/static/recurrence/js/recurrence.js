@@ -46,7 +46,7 @@ recurrence.Rule.prototype = {
         this.count = rule.count;
 
         recurrence.array.foreach(
-            recurrence.byparams, function(param) {
+            recurrence.byparams, function(param) { 
                 this[param] = rule[param];
             }, this);
     },
@@ -193,7 +193,23 @@ recurrence.Rule.prototype = {
                 parts.push(
                     interpolate(
                         recurrence.display.tokens.each,
-                        {'items': items}, true));
+                        {'items': items}, 
+                        true
+                    )
+                );
+                
+            }
+        }
+        if (this.freq == recurrence.HOURLY) {
+            if (this.byhour) {
+                items = this.byhour.join(', ');
+                parts.push(
+                    interpolate(
+                        recurrence.display.tokens.each,
+                        {'items': items}, 
+                        true
+                    )
+                )
             }
         }
 
@@ -597,7 +613,6 @@ recurrence.serialize = function(rule_or_recurrence) {
         };
 
         var values = [];
-
         values.push(['FREQ', [recurrence.frequencies[rule.freq]]]);
         if (rule.interval != 1)
             values.push(['INTERVAL', [String(rule.interval)]]);
