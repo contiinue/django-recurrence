@@ -541,16 +541,16 @@ msgstr ""
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1118
 msgid "th"
-msgstr "-е"
+msgstr ""
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1121
 msgid "st"
-msgstr "-е"
+msgstr ""
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1123
 msgid "nd"
-msgstr "-е"
+msgstr ""
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1125
 msgid "rd"
-msgstr "-е"
+msgstr ""
