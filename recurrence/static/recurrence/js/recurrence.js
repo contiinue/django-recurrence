@@ -1115,15 +1115,15 @@ recurrence.display.month_day = pgettext('Day of month', '%j%S');
 recurrence.display.ordinal_indicator = {
     'en': function(day) {
         if (day == 11 || day == 12 || day == 13)
-            return 'th';
+            return gettext('th');
         var last = day % 10;
         if (last == 1)
-            return 'st';
+            return gettext('st');
         if (last == 2)
-            return 'nd';
+            return gettext('nd');
         if (last == 3)
-            return 'rd';
-        return 'th';
+            return gettext('rd');
+        return gettext('th');
     },
     'fr': function(day) {
         if (day == 1)

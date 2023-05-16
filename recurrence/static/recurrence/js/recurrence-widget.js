@@ -762,31 +762,38 @@ recurrence.widget.RuleForm.prototype = {
                 return option;
             });
         var freq_select = recurrence.widget.e(
-            'select', {'name': 'freq'}, freq_options);
+            'select', {'name': 'freq', 'class': "custom-select", 'id': 'inputGroupSelect01', 'aria-label':""}, freq_options);
         var freq_label = recurrence.widget.e(
             'span', {'class': 'recurrence-label'},
-            recurrence.display.labels.frequency + ':');
+            recurrence.display.labels.frequency);
         var freq_container = recurrence.widget.e(
-            'div', {'class': 'freq'},
+            'div', {'class': 'freq col'},
             [freq_label, freq_select]);
 
         // interval
 
         var interval_field = recurrence.widget.e(
             'input', {
-            'name': 'interval', 'size': 1, 'value': this.rule.interval});
+            'name': 'interval', 'class': 'input_field_f input_field_f_sm', 'size': 1, 'value': this.rule.interval}
+        );
+
         var interval_label1 = recurrence.widget.e(
-            'span', {'class': 'recurrence-label'},
-            recurrence.display.labels.every);
+            'span', {'class': 'recurrence-label '},
+            recurrence.display.labels.every
+        );
+
         var interval_label2 = recurrence.widget.e(
-            'span', {'class': 'laebl'},
-            recurrence.display.timeintervals_plural[this.rule.freq]);
+            'span', {'class': 'label '},
+            recurrence.display.timeintervals_plural[this.rule.freq]
+        );
+
         var interval_container = recurrence.widget.e(
-            'div', {'class': 'interval'},
-            [interval_label1, interval_field, interval_label2]);
+            'div', {'class': 'interval test_interval'},
+            [interval_label1, interval_field, interval_label2]
+        );
+
 
         // until
-
         if (this.rule.until)
             until_value = recurrence.date.format(this.rule.until, '%Y-%m-%d');
         else
@@ -817,7 +824,7 @@ recurrence.widget.RuleForm.prototype = {
                 'class': 'radio', 'type': 'radio',
                 'name': 'until_count', 'value': 'count'});
         var count_field = recurrence.widget.e(
-            'input', {'name': 'count', 'size': 1, 'value': count_value});
+            'input', {'name': 'count', 'class': 'input_field_f input_field_f_sm', 'size': 1, 'value': count_value});
         if (this.rule.count && this.rule.count < 2)
             var token = recurrence.string.capitalize(
                 recurrence.display.labels.count);
@@ -1155,7 +1162,7 @@ recurrence.widget.RuleYearlyForm.prototype = {
                 return option;
             });
         var position_select = recurrence.widget.e(
-            'select', {'name': 'position'}, position_options);
+            'select', {'name': 'position', 'class': "custom-select", 'id': 'inputGroupSelect011', 'aria-label':""}, position_options);
         var weekday_options = recurrence.array.foreach(
             recurrence.display.weekdays, function(weekday, i) {
                 var option = recurrence.widget.e(
@@ -1163,7 +1170,7 @@ recurrence.widget.RuleYearlyForm.prototype = {
                 return option;
             });
         var weekday_select = recurrence.widget.e(
-            'select', {'name': 'weekday'}, weekday_options);
+            'select', {'name': 'weekday', 'class': "custom-select", 'id': 'inputGroupSelect012', 'aria-label':""}, weekday_options);
         var weekday_position_container = recurrence.widget.e(
             'div', {'class': 'section'}, [position_select, weekday_select]);
 
@@ -1323,7 +1330,7 @@ recurrence.widget.RuleMonthlyForm.prototype = {
                 return option;
             });
         var position_select = recurrence.widget.e(
-            'select', {'name': 'position'}, position_options);
+            'select', {'name': 'position', 'class': "custom-select", 'id': 'inputGroupSelect013', 'aria-label':""}, position_options);
 
         var weekday_options = recurrence.array.foreach(
             recurrence.display.weekdays, function(weekday, i) {
@@ -1332,7 +1339,7 @@ recurrence.widget.RuleMonthlyForm.prototype = {
                 return option;
             });
         var weekday_select = recurrence.widget.e(
-            'select', {'name': 'weekday'}, weekday_options);
+            'select', {'name': 'weekday', 'class': "custom-select", 'id': 'inputGroupSelect014', 'aria-label':""}, weekday_options);
         var weekday_position_container = recurrence.widget.e(
             'div', {'class': 'section'}, [position_select, weekday_select]);
         var weekday_radio = recurrence.widget.e(

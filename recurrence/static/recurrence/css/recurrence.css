@@ -311,11 +311,11 @@ table.recurrence-calendar .footer {
     max-width: 100%;
     overflow-x: hidden;
   }
-  
+
 .head_title_rec a {
 display: block;
 }
-  
+
 @media (min-width: 433px) {
     .head_title_rec {
         overflow-x: auto;
@@ -323,5 +323,9 @@ display: block;
 }
 
 .recurrence-widget {
-    max-width: 440px;
+    max-width: 600px;
 }
+
+/* .interval_input {
+    white-space: nowrap;
+} */
