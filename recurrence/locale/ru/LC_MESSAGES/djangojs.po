@@ -1,0 +1,543 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-11 23:44+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1603
+msgctxt "date"
+msgid "%l, %F %j, %Y"
+msgstr ""
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1768
+msgid "including"
+msgstr "включая"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1768
+msgid "excluding"
+msgstr "за исключением"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1772
+msgid "Frequency"
+msgstr "Частота"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1773
+msgid "On the"
+msgstr "На"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1774
+msgid "Each"
+msgstr "Каждое"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1775
+msgid "Every"
+msgstr "Каждый"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1776
+msgid "Until"
+msgstr "До"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1777
+msgid "Occurs %(number)s time"
+msgstr "Происходит %(number)s раз"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1778
+msgid "Occurs %(number)s times"
+msgstr "Происходит %(number)s раз"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1779
+msgid "Date"
+msgstr "Дата"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1780
+msgid "Time"
+msgstr "Время"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1781
+msgid "Repeat until"
+msgstr "Повторять до"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1782
+msgid "Exclude these occurences"
+msgstr "Исключите эти случаи"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1783
+msgid "Exclude this date"
+msgstr "Исключить эту дату"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1784
+msgid "Add rule"
+msgstr "Добавить правило"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1785
+msgid "Add date"
+msgstr "Добавить дату"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1786
+msgid "Remove"
+msgstr "Удалить"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1787
+msgid "Calendar"
+msgstr "Календарь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:218
+msgctxt "Until date format"
+msgid "%Y-%m-%d"
+msgstr ""
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1007
+msgid "midnight"
+msgstr "полночь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1008
+msgid "noon"
+msgstr "полдень"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1009
+msgid "on the %(items)s"
+msgstr "на %(items)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1010
+msgid "every %(number)s %(freq)s"
+msgstr "каждые %(number)s %(freq)"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1011
+msgid "each %(items)s"
+msgstr "каждый %(items)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1012
+msgid "occuring %(number)s time"
+msgstr "происходит %(number)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1013
+msgid "occuring %(number)s times"
+msgstr "происходит %(number)s раз"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1014
+msgid "until %(date)s"
+msgstr "до %(date)"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1018
+msgid "year"
+msgstr "год"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1018
+msgid "month"
+msgstr "месяц"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1018
+msgid "week"
+msgstr "неделя"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1018
+msgid "day"
+msgstr "день"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1019
+msgid "hour"
+msgstr "час"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1019
+msgid "minute"
+msgstr "минута"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1019
+msgid "second"
+msgstr "второй"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
+msgid "years"
+msgstr "лет"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
+msgid "months"
+msgstr "месяцев"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
+msgid "weeks"
+msgstr "недели"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
+msgid "days"
+msgstr "дней"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1023
+msgid "hours"
+msgstr "часы"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1023
+msgid "minutes"
+msgstr "минут"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1023
+msgid "seconds"
+msgstr "секунды"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1026
+msgid "annually"
+msgstr "ежегодно"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1026
+msgid "monthly"
+msgstr "ежемесячно"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1026
+msgid "weekly"
+msgstr "еженедельно"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1026
+msgid "daily"
+msgstr "ежедневно"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1027
+msgid "hourly"
+msgstr "ежечасно"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1027
+msgid "minutely"
+msgstr ""
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1027
+msgid "secondly"
+msgstr "во-вторых"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1030
+msgid "Monday"
+msgstr "Понедельник"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1030
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1030
+msgid "Wednesday"
+msgstr "Среда"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1030
+msgid "Thursday"
+msgstr "Четверг"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1031
+msgid "Friday"
+msgstr "Пятница"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1031
+msgid "Saturday"
+msgstr "Суббота"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1031
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1034
+msgid "Mon"
+msgstr "Пн"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1034
+msgid "Tue"
+msgstr "Вт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1034
+msgid "Wed"
+msgstr "Ср"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1034
+msgid "Thu"
+msgstr "Чт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1035
+msgid "Fri"
+msgstr "Пт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1035
+msgid "Sat"
+msgstr "Сб"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1035
+msgid "Sun"
+msgstr "Вс"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1038
+msgctxt "Monday first letter"
+msgid "M"
+msgstr "П"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1039
+msgctxt "Tuesday first letter"
+msgid "T"
+msgstr "В"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1040
+msgctxt "Wednesday first letter"
+msgid "W"
+msgstr "С"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1041
+msgctxt "Thursday first letter"
+msgid "T"
+msgstr "Ч"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1042
+msgctxt "Friday first letter"
+msgid "F"
+msgstr "П"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1043
+msgctxt "Saturday first letter"
+msgid "S"
+msgstr "С"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1044
+msgctxt "Sunday first letter"
+msgid "S"
+msgstr "С"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1047
+msgid "first %(weekday)s"
+msgstr "первый %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1048
+msgid "second %(weekday)s"
+msgstr "второй %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1049
+msgid "third %(weekday)s"
+msgstr "третий %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1050
+msgid "fourth %(weekday)s"
+msgstr "четвертый %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1051
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1060
+msgid "last %(weekday)s"
+msgstr "последний  %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1052
+msgid "second last %(weekday)s"
+msgstr "второй последний  %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1053
+msgid "third last %(weekday)s"
+msgstr "третий последний %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1056
+msgid "1st %(weekday)s"
+msgstr "1-й %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1057
+msgid "2nd %(weekday)s"
+msgstr "2-й %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1058
+msgid "3rd %(weekday)s"
+msgstr "3-й %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1059
+msgid "4th %(weekday)s"
+msgstr "4-й %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1061
+msgid "2nd last %(weekday)s"
+msgstr "2-й последний %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1062
+msgid "3rd last %(weekday)s"
+msgstr "2-й последний %(weekday)s"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1065
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1071
+msgid "last"
+msgstr "последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1066
+msgid "second last"
+msgstr "второй последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1067
+msgid "third last"
+msgstr "третий последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1068
+msgid "fourth last"
+msgstr "четвёртый последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1072
+msgid "2nd last"
+msgstr "2-й последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1073
+msgid "3rd last"
+msgstr "3-й последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1074
+msgid "4th last"
+msgstr "4-й последний"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1077
+msgid "January"
+msgstr "Январь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1077
+msgid "February"
+msgstr "Февраль"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1077
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1089
+msgid "March"
+msgstr "Март"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1078
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1090
+msgid "April"
+msgstr "Апрель"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1078
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1084
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1090
+msgctxt "month name"
+msgid "May"
+msgstr "Май"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1078
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1090
+msgid "June"
+msgstr "Июнь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1079
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1091
+msgid "July"
+msgstr "Июль"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1079
+msgid "August"
+msgstr "Август"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1079
+msgid "September"
+msgstr "Сентябрь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1080
+msgid "October"
+msgstr "Октябрь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1080
+msgid "November"
+msgstr "Ноябрь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1080
+msgid "December"
+msgstr "Декабрь"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1083
+msgid "Jan"
+msgstr "Янв"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1083
+msgid "Feb"
+msgstr "Фев"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1083
+msgid "Mar"
+msgstr "Мар"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1084
+msgid "Apr"
+msgstr "Апр"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1084
+msgid "Jun"
+msgstr "Июн"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1085
+msgid "Jul"
+msgstr "Июл"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1085
+msgid "Aug"
+msgstr "Авг"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1085
+msgid "Sep"
+msgstr "Сен"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1086
+msgid "Oct"
+msgstr "Окт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1086
+msgid "Nov"
+msgstr "Окт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1086
+msgid "Dec"
+msgstr "Дек"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1089
+msgid "Jan."
+msgstr "Янв"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1089
+msgid "Feb."
+msgstr "Фев"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1091
+msgid "Aug."
+msgstr "Авг"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1091
+msgid "Sept."
+msgstr "Сен"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1092
+msgid "Oct."
+msgstr "Окт"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1092
+msgid "Nov."
+msgstr "Ноя"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1092
+msgid "Dec."
+msgstr "Дек"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1095
+msgid "a.m."
+msgstr " "
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1095
+msgid "p.m."
+msgstr " "
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1096
+msgid "AM"
+msgstr " "
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1096
+msgid "PM"
+msgstr " "
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1098
+msgctxt "Day of month"
+msgid "%j%S"
+msgstr ""
+
+msgid "st"
+msgstr " "

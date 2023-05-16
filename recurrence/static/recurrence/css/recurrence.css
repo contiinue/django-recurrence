@@ -305,3 +305,23 @@ table.recurrence-calendar .footer {
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
 }
+
+.head_title_rec {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+.head_title_rec a {
+display: block;
+}
+  
+@media (min-width: 433px) {
+    .head_title_rec {
+        overflow-x: auto;
+        }
+}
+
+.recurrence-widget {
+    max-width: 440px;
+}

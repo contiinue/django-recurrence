@@ -1,0 +1,404 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-24 23:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: base.py:1087
+msgid "annually"
+msgstr "ежегодно"
+
+#: base.py:1087
+msgid "monthly"
+msgstr "ежемесячно"
+
+#: base.py:1087
+msgid "weekly"
+msgstr "еженедельно"
+
+#: base.py:1087
+msgid "daily"
+msgstr "ежедневно"
+
+#: base.py:1088
+msgid "hourly"
+msgstr "почасовая"
+
+#: base.py:1088
+msgid "minutely"
+msgstr ""
+
+#: base.py:1088
+msgid "secondly"
+msgstr "во-вторых"
+
+#: base.py:1091
+msgid "years"
+msgstr "лет"
+
+#: base.py:1091
+msgid "months"
+msgstr "месяцев"
+
+#: base.py:1091
+msgid "weeks"
+msgstr "недели"
+
+#: base.py:1091
+msgid "days"
+msgstr "дней"
+
+#: base.py:1092
+msgid "hours"
+msgstr "часы"
+
+#: base.py:1092
+msgid "minutes"
+msgstr "минут"
+
+#: base.py:1092
+msgid "seconds"
+msgstr "секунды"
+
+#: base.py:1097
+#, python-format
+msgid "1st %(weekday)s"
+msgstr "1-й %(weekday)s"
+
+#: base.py:1098
+#, python-format
+msgid "2nd %(weekday)s"
+msgstr "2-й %(weekday)s"
+
+#: base.py:1099
+#, python-format
+msgid "3rd %(weekday)s"
+msgstr "3-й %(weekday)s"
+
+#: base.py:1100 base.py:1126
+#, python-format
+msgid "last %(weekday)s"
+msgstr "последний %(weekday)s"
+
+#: base.py:1101
+#, python-format
+msgid "2nd last %(weekday)s"
+msgstr "2-й последний %(weekday)s"
+
+#: base.py:1102
+#, python-format
+msgid "3rd last %(weekday)s"
+msgstr "3-й последний %(weekday)s"
+
+#: base.py:1105 base.py:1131
+msgid "last"
+msgstr "последний"
+
+#: base.py:1106
+msgid "2nd last"
+msgstr "2-й последний"
+
+#: base.py:1107
+msgid "3rd last"
+msgstr "3-й последний"
+
+#: base.py:1108
+msgid "4th last"
+msgstr "4-й последний"
+
+#: base.py:1111
+msgid "Mon"
+msgstr "Пн"
+
+#: base.py:1111
+msgid "Tue"
+msgstr "Вт"
+
+#: base.py:1111
+msgid "Wed"
+msgstr "Ср"
+
+#: base.py:1112
+msgid "Thu"
+msgstr "Чт"
+
+#: base.py:1112
+msgid "Fri"
+msgstr "Пт"
+
+#: base.py:1112
+msgid "Sat"
+msgstr "Сб"
+
+#: base.py:1112
+msgid "Sun"
+msgstr "Вс"
+
+#: base.py:1115
+msgid "Jan"
+msgstr "Янв"
+
+#: base.py:1115
+msgid "Feb"
+msgstr "Фев"
+
+#: base.py:1115
+msgid "Mar"
+msgstr "Мар"
+
+#: base.py:1115
+msgid "Apr"
+msgstr "Апр"
+
+#: base.py:1116
+msgid "Jun"
+msgstr "Июн"
+
+#: base.py:1116
+msgid "Jul"
+msgstr "Июл"
+
+#: base.py:1116
+msgid "Aug"
+msgstr "Авг"
+
+#: base.py:1117
+msgid "Sep"
+msgstr "Сен"
+
+#: base.py:1117
+msgid "Oct"
+msgstr "Окт"
+
+#: base.py:1117
+msgid "Nov"
+msgstr "Ноя"
+
+#: base.py:1117
+msgid "Dec"
+msgstr "Дек"
+
+#: base.py:1122
+#, python-format
+msgid "first %(weekday)s"
+msgstr "первый %(weekday)s"
+
+#: base.py:1123
+#, python-format
+msgid "second %(weekday)s"
+msgstr "второй %(weekday)s"
+
+#: base.py:1124
+#, python-format
+msgid "third %(weekday)s"
+msgstr "третий %(weekday)s"
+
+#: base.py:1125
+#, python-format
+msgid "fourth %(weekday)s"
+msgstr "четвертый %(weekday)s"
+
+#: base.py:1127
+#, python-format
+msgid "second last %(weekday)s"
+msgstr "второй последний %(weekday)s"
+
+#: base.py:1128
+#, python-format
+msgid "third last %(weekday)s"
+msgstr "третий последний %(weekday)s"
+
+#: base.py:1132
+msgid "second last"
+msgstr "второй последний"
+
+#: base.py:1133
+msgid "third last"
+msgstr "третий последний"
+
+#: base.py:1134
+msgid "fourth last"
+msgstr "четвёртый последний"
+
+#: base.py:1137 choices.py:17
+msgid "Monday"
+msgstr "Понедельник"
+
+#: base.py:1137 choices.py:18
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: base.py:1137 choices.py:19
+msgid "Wednesday"
+msgstr "Среда"
+
+#: base.py:1138 choices.py:20
+msgid "Thursday"
+msgstr "Четверг"
+
+#: base.py:1138 choices.py:21
+msgid "Friday"
+msgstr "Пятница"
+
+#: base.py:1138 choices.py:22
+msgid "Saturday"
+msgstr "Суббота"
+
+#: base.py:1138 choices.py:23
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: base.py:1141 choices.py:27
+msgid "January"
+msgstr "Январь"
+
+#: base.py:1141 choices.py:28
+msgid "February"
+msgstr "Февраль"
+
+#: base.py:1141 choices.py:29
+msgid "March"
+msgstr "Март"
+
+#: base.py:1141 choices.py:30
+msgid "April"
+msgstr "Апрель"
+
+#: base.py:1142 choices.py:32
+msgid "June"
+msgstr "Июнь"
+
+#: base.py:1142 choices.py:33
+msgid "July"
+msgstr "Июль"
+
+#: base.py:1142 choices.py:34
+msgid "August"
+msgstr "Август"
+
+#: base.py:1143 choices.py:35
+msgid "September"
+msgstr "Сентябрь"
+
+#: base.py:1143 choices.py:36
+msgid "October"
+msgstr "Октябрь"
+
+#: base.py:1143 choices.py:37
+msgid "November"
+msgstr "Ноябрь"
+
+#: base.py:1143 choices.py:38
+msgid "December"
+msgstr "Декабрь"
+
+#: base.py:1161 base.py:1178 base.py:1189 base.py:1202 base.py:1220
+msgid ", "
+msgstr ""
+
+#: base.py:1167
+#, python-format
+msgid "every %(number)s %(freq)s"
+msgstr "каждые %(number)s %(freq)s"
+
+#: base.py:1181 base.py:1205
+#, python-format
+msgid "each %(items)s"
+msgstr "каждый %(items)s"
+
+#: base.py:1184 base.py:1193 base.py:1197
+#, python-format
+msgid "on the %(items)s"
+msgstr "на %(items)s"
+
+#: base.py:1212
+msgid "occuring once"
+msgstr "один раз"
+
+#: base.py:1214
+#, python-format
+msgid "occuring %(number)s times"
+msgstr "происходит %(number)s раз"
+
+#: base.py:1217
+#, python-format
+msgid "until %(date)s"
+msgstr "до %(date)s"
+
+#: choices.py:7
+msgid "Secondly"
+msgstr "Во-вторых"
+
+#: choices.py:8
+msgid "Minutely"
+msgstr "Минуты"
+
+#: choices.py:9
+msgid "Hourly"
+msgstr "Почасовая"
+
+#: choices.py:10
+msgid "Daily"
+msgstr "Ежедневно"
+
+#: choices.py:11
+msgid "Weekly"
+msgstr "Еженедельно"
+
+#: choices.py:12
+msgid "Monthly"
+msgstr "Ежемесячно"
+
+#: choices.py:13
+msgid "Yearly"
+msgstr "Ежегодно"
+
+#: choices.py:31
+msgid "May"
+msgstr "Май"
+
+#: choices.py:44
+msgid "Inclusion"
+msgstr "Включение"
+
+#: choices.py:45
+msgid "Exclusion"
+msgstr "Исключение"
+
+#: forms.py:72
+msgid "Invalid frequency."
+msgstr "Недопустимая частота"
+
+#: forms.py:74
+#, python-format
+msgid "Max rules exceeded. The limit is %(limit)s"
+msgstr "Превышен лимит правил. Предел составляет %(limit)s"
+
+#: forms.py:76
+#, python-format
+msgid "Max exclusion rules exceeded. The limit is %(limit)s"
+msgstr "Превышено максимальное количество правил исключения. Предел составляет %(limit)s"
+
+#: forms.py:78
+#, python-format
+msgid "Max dates exceeded. The limit is %(limit)s"
+msgstr "Максимальное количество дат превышено. Предел составляет %(limit)s"
+
+#: forms.py:80
+#, python-format
+msgid "Max exclusion dates exceeded. The limit is %(limit)s"
+msgstr "Превышен максимальный срок исключения. Предел составляет %(limit)s"

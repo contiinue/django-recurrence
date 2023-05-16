@@ -644,7 +644,7 @@ recurrence.widget.Panel.prototype = {
             }
         }, '&times;');
         var label = recurrence.widget.e('a', {
-           'class': 'recurrence-label',
+           'class': 'recurrence-label head_title_rec',
            'href': 'javascript:void(0)',
            'onclick': function() {
                if (panel.collapsed)
