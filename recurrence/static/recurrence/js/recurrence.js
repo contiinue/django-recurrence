@@ -127,7 +127,7 @@ recurrence.Rule.prototype = {
                 items = items.join(', ');
                 parts.push(
                     interpolate(
-                        gettext('eachh %(items)s', 1),
+                        gettext('каждый %(items)s', 1),
                         {'items': items}, true));
             }
 
