@@ -119,8 +119,11 @@ msgid "every %(number)s %(freq)s"
 msgstr "каждый %(number)s %(freq)s"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1011
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:130
 msgid "each %(items)s"
-msgstr "каждые %(items)s"
+msgid_plural "eachh %(items)s"
+msgstr[0] "каждые %(items)s"
+msgstr[1] "каждый %(items)s"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1012
 msgid "occuring %(number)s time"
