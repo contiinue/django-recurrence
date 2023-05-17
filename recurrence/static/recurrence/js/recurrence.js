@@ -127,7 +127,7 @@ recurrence.Rule.prototype = {
                 items = items.join(', ');
                 parts.push(
                     interpolate(
-                        recurrence.display.tokens.each,
+                        'Каждый',
                         {'items': items}, true));
             }
 
