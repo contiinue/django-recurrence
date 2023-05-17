@@ -304,7 +304,7 @@ recurrence.widget.DateSelector.prototype = {
             var date_value = '';
         var date_field = recurrence.widget.e(
             'input', {
-                'class': 'date-field', 'size': 10,
+                'class': 'date-field input_field_f input_field_f_sm', 'size': 10,
                 'value': date_value,
                 'onchange': function() {dateselector.set_date(this.value);}});
         var calendar_button = recurrence.widget.e(
@@ -669,6 +669,10 @@ recurrence.widget.Panel.prototype = {
     },
 
     set_label: function(label) {
+        var to_declension = recurrence.display.timeintervals[2] 
+        if (label.includes(to_declension)) {
+            label = recurrence.string.capitalize(label.replace("Каждый", recurrence.display.declensions[1]));
+        }
         this.elements.label.innerHTML = label;
     },
 
@@ -779,9 +783,8 @@ recurrence.widget.RuleForm.prototype = {
 
         var interval_label1 = recurrence.widget.e(
             'span', {'class': 'recurrence-label '},
-            recurrence.display.labels.every
+            recurrence.display.labels.every 
         );
-
         var interval_label2 = recurrence.widget.e(
             'span', {'class': 'label '},
             recurrence.display.timeintervals_plural[this.rule.freq]
@@ -1032,7 +1035,16 @@ recurrence.widget.RuleForm.prototype = {
             return;
         }
 
+        var first_label = this.elements.interval_field.previousSibling
         var label = this.elements.interval_field.nextSibling;
+
+        
+        if (this.selected_freq === 2) {
+            first_label.innerHTML = recurrence.display.declensions[1]
+        }
+        else {
+            first_label.innerHTML = recurrence.display.declensions[0]
+        }
 
         if (interval < 2)
             label.firstChild.nodeValue = (

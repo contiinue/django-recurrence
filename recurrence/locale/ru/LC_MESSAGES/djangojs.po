@@ -121,9 +121,7 @@ msgstr "каждый %(number)s %(freq)s"
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1011
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:130
 msgid "each %(items)s"
-msgid_plural "eachh %(items)s"
-msgstr[0] "каждые %(items)s"
-msgstr[1] "каждый %(items)s"
+msgstr "каждые %(items)s"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1012
 msgid "occuring %(number)s time"
@@ -175,7 +173,7 @@ msgstr "месяц"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "weeks"
-msgstr "недель"
+msgstr "неделя"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "days"

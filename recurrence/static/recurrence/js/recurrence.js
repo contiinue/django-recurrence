@@ -194,7 +194,7 @@ recurrence.Rule.prototype = {
                 items = items.join(', ');
                 parts.push(
                     interpolate(
-                        recurrence.display.tokens.each,
+                        gettext('каждый %(items)s', 1),
                         {'items': items}, 
                         true
                     )
@@ -204,7 +204,6 @@ recurrence.Rule.prototype = {
         }
         if (this.freq == recurrence.HOURLY) {
             if (this.byhour.length) {
-                console.log(this.byhour)
                 items = this.byhour.join(', ');
                 parts.push(
                     interpolate(
@@ -1031,6 +1030,10 @@ recurrence.display.tokens = {
     'count_plural': gettext('occuring %(number)s times'),
     'until': gettext('until %(date)s')
 };
+
+recurrence.display.declensions = [
+    gettext('каждый'), gettext('каждая'), 
+]
 
 recurrence.display.timeintervals = [
     gettext('year'), gettext('month'), gettext('week'), gettext('day'),
