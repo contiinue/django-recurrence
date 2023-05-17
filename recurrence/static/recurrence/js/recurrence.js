@@ -145,18 +145,20 @@ recurrence.Rule.prototype = {
                 // i.e. 'on the 1st, 5th, 10th'
                 var items = recurrence.array.foreach(
                     this.bymonthday, function(day, i) {
-			if (day < 0) {
-			    if (short) {
-				return recurrence.display.last_of_month_short[String(day)]
-			    } else {
-				return recurrence.display.last_of_month[String(day)]
-			    }
-			} else {
-                            var dt = new Date();
-                            dt.setMonth(0);
-                            dt.setDate(day);
-                            return recurrence.date.format(dt, recurrence.display.month_day);
-			}
+                    if (day < 0) {
+                        if (short) {
+                            return recurrence.display.last_of_month_short[String(day)]
+                        } 
+                        else {
+                            return recurrence.display.last_of_month[String(day)]
+                        }
+                    } 
+                    else {
+                        var dt = new Date();
+                        dt.setMonth(0);
+                        dt.setDate(day);
+                        return recurrence.date.format(dt, recurrence.display.month_day);
+                    }
                 });
                 items = items.join(', ');
                 parts.push(
@@ -201,12 +203,13 @@ recurrence.Rule.prototype = {
             }
         }
         if (this.freq == recurrence.HOURLY) {
-            if (this.byhour) {
+            if (this.byhour.length) {
+                console.log(this.byhour)
                 items = this.byhour.join(', ');
                 parts.push(
                     interpolate(
                         recurrence.display.tokens.each,
-                        {'items': items}, 
+                        {'items': items},
                         true
                     )
                 )

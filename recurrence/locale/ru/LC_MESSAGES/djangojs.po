@@ -43,7 +43,7 @@ msgstr "На"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1774
 msgid "Each"
-msgstr "Каждое"
+msgstr "Каждые"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1775
 msgid "Every"
@@ -75,7 +75,7 @@ msgstr "Повторять до"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1782
 msgid "Exclude these occurences"
-msgstr "Исключите эти случаи"
+msgstr "Исключить этот случай"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence-widget.js:1783
 msgid "Exclude this date"
@@ -116,7 +116,7 @@ msgstr "на %(items)s"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1010
 msgid "every %(number)s %(freq)s"
-msgstr "каждые %(number)s %(freq)s"
+msgstr "каждый %(number)s %(freq)s"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1011
 msgid "each %(items)s"
@@ -164,23 +164,23 @@ msgstr "второй"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "years"
-msgstr "лет"
+msgstr "год"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "months"
-msgstr "месяцев"
+msgstr "месяц"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "weeks"
-msgstr "недели"
+msgstr "недель"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1022
 msgid "days"
-msgstr "дней"
+msgstr "день"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1023
 msgid "hours"
-msgstr "часы"
+msgstr "час"
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1023
 msgid "minutes"
@@ -541,16 +541,16 @@ msgstr ""
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1118
 msgid "th"
-msgstr ""
+msgstr " "
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1121
 msgid "st"
-msgstr ""
+msgstr " "
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1123
 msgid "nd"
-msgstr ""
+msgstr " "
 
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1125
 msgid "rd"
-msgstr ""
+msgstr " "
