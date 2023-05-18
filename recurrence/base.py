@@ -944,6 +944,13 @@ def deserialize(text, include_dtstart=True):
     :Returns:
         A `Recurrence` instance.
     """
+
+    def old_format_support(text: str) -> list:
+        if text:
+            return [('RRULE', f'FREQ={text}'), ]
+        else:
+            raise exceptions.DeserializationError('malformed data')
+
     def deserialize_dt(text):
         """
         Deserialize a rfc2445 text to a datetime.
@@ -999,7 +1006,7 @@ def deserialize(text, include_dtstart=True):
         re.MULTILINE).findall(text)
 
     if not tokens and text:
-        raise exceptions.DeserializationError('malformed data')
+        tokens = old_format_support(text)
 
     for label, param_text in tokens:
         if not param_text:
