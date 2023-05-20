@@ -469,12 +469,32 @@ recurrence.widget.Widget.prototype = {
 
         this.init_dom();
         this.init_panels();
+        recurrence.widget.default_panel();
     },
 
     init_dom: function() {
         var widget = this;
 
-        var panels = recurrence.widget.e('div', {'class': 'panels'});
+        // var plus = recurrence.widget.e(
+        //     'span', {'title': 'Добавить правило', 'class': 'plus', 'onclick': function() {widget.add_rule();}}, '+');
+        var label = recurrence.widget.e(
+            'span', {'class': 'recurrence-label p-3'}, 'Однократно');
+
+        var elem = recurrence.widget.e(
+            'a', {'class': 'add-button', 'href': 'javascript:void(0)'},
+            [label]);
+
+        var default_elem = recurrence.widget.e('a', {'class': 'recurrence-label', 'href': 'javascript:void(0)'})
+        default_elem.innerHTML = gettext('Однократно')
+        var default_freq = recurrence.widget.e('div', {'class': 'header control'}, [elem])
+        var default_panel = recurrence.widget.e('dev', {'class': 'panel ', 'id': 'default-panel'}, [default_freq])
+
+
+        var panels = recurrence.widget.e(
+            'div',
+            {'class': 'panels'},
+            [default_panel]
+        );
         var control = recurrence.widget.e('div', {'class': 'control'});
         var root = recurrence.widget.e(
             'div', {'class': this.textarea.className}, [panels, control]);
@@ -555,6 +575,7 @@ recurrence.widget.Widget.prototype = {
             panel.widget.selected_panel = this;
         };
         panel.onremove = function() {
+            recurrence.widget.default_panel()
             form.remove();
         };
 
@@ -581,6 +602,15 @@ recurrence.widget.Widget.prototype = {
     }
 };
 
+recurrence.widget.default_panel = function () {
+    let elem = $('#default-panel')
+    if ($(".panel:not(#default-panel)").length == 0 ) {
+        elem.show()
+    }
+    else {
+        elem.hide()
+    }
+}
 
 recurrence.widget.AddButton = function(label, options) {
     this.init(label, options);
@@ -634,7 +664,6 @@ recurrence.widget.Panel.prototype = {
 
     init_dom: function() {
         var panel = this;
-
         var remove = recurrence.widget.e('a', {
             'class': 'remove',
             'href': 'javascript:void(0)',
@@ -669,7 +698,7 @@ recurrence.widget.Panel.prototype = {
     },
 
     set_label: function(label) {
-        var to_declension = recurrence.display.timeintervals[2] 
+        var to_declension = recurrence.display.timeintervals[2]
         if (label.includes(to_declension)) {
             label = recurrence.string.capitalize(label.replace("Каждый", recurrence.display.declensions[1]));
         }
@@ -683,6 +712,7 @@ recurrence.widget.Panel.prototype = {
     },
 
     expand: function() {
+        recurrence.widget.default_panel()
         this.collapsed = false;
         recurrence.widget.remove_class(this.elements.body, 'hidden');
         if (this.onexpand)
@@ -783,7 +813,7 @@ recurrence.widget.RuleForm.prototype = {
 
         var interval_label1 = recurrence.widget.e(
             'span', {'class': 'recurrence-label '},
-            recurrence.display.labels.every 
+            recurrence.display.labels.every
         );
         var interval_label2 = recurrence.widget.e(
             'span', {'class': 'label '},
@@ -1038,7 +1068,7 @@ recurrence.widget.RuleForm.prototype = {
         var first_label = this.elements.interval_field.previousSibling
         var label = this.elements.interval_field.nextSibling;
 
-        
+
         if (this.selected_freq === 2) {
             first_label.innerHTML = recurrence.display.declensions[1]
         }
@@ -1097,12 +1127,13 @@ recurrence.widget.RuleForm.prototype = {
 
     update: function() {
         this.panel.set_label(this.get_display_text());
-        
+
         this.rule.update(this.freq_rules[this.selected_freq]);
         this.panel.widget.update();
     },
 
     remove: function() {
+        recurrence.widget.default_panel()
         var parent = this.elements.root.parentNode;
         if (parent)
             parent.removeChild(this.elements.root);
