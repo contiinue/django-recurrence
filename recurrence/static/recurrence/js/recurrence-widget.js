@@ -478,7 +478,7 @@ recurrence.widget.Widget.prototype = {
         // var plus = recurrence.widget.e(
         //     'span', {'title': 'Добавить правило', 'class': 'plus', 'onclick': function() {widget.add_rule();}}, '+');
         var label = recurrence.widget.e(
-            'span', {'class': 'recurrence-label p-3'}, 'Однократно');
+            'span', {'class': 'recurrence-label p-4'}, 'Однократно');
 
         var elem = recurrence.widget.e(
             'a', {'class': 'add-button', 'href': 'javascript:void(0)'},
@@ -487,7 +487,7 @@ recurrence.widget.Widget.prototype = {
         var default_elem = recurrence.widget.e('a', {'class': 'recurrence-label', 'href': 'javascript:void(0)'})
         default_elem.innerHTML = gettext('Однократно')
         var default_freq = recurrence.widget.e('div', {'class': 'header control'}, [elem])
-        var default_panel = recurrence.widget.e('dev', {'class': 'panel ', 'id': 'default-panel'}, [default_freq])
+        var default_panel = recurrence.widget.e('div', {'class': 'panel ', 'id': 'default-panel'}, [default_freq])
 
 
         var panels = recurrence.widget.e(
