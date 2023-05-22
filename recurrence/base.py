@@ -947,7 +947,7 @@ def deserialize(text, include_dtstart=True):
 
     def old_format_support(text: str) -> list:
         if text:
-            return [('RRULE', f'FREQ={text}'), ]
+            return [('RRULE', f'FREQ={text}'), ] if text != 'ONCE' else []
         else:
             raise exceptions.DeserializationError('malformed data')
 
