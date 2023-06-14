@@ -179,7 +179,6 @@ class RecurrenceField(forms.CharField):
                 raise forms.ValidationError(
                     self.error_messages['recurrence_required']
                 )
-
         return recurrence_obj
 
 

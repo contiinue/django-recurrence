@@ -555,3 +555,11 @@ msgstr " "
 #: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1125
 msgid "rd"
 msgstr " "
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1833
+msgid "Add a rule in rrule format"
+msgstr "Добавить правило в формате rrule"
+
+#: env/lib/python3.9/site-packages/recurrence/static/recurrence/js/recurrence.js:1830
+msgid "Custom rrule"
+msgstr "Правило"

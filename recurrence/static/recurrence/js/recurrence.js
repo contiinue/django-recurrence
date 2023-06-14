@@ -233,7 +233,7 @@ recurrence.Rule.prototype = {
             parts.push(
                 interpolate(
                     recurrence.display.tokens.until,
-                    {'date': recurrence.date.format(this.until, pgettext('Until date format', '%Y-%m-%d'))}, true));
+                    {'date': recurrence.date.format(this.until, pgettext('Until date format', '%Y-%m-%d %h:%i'))}, true));   
         }
 
         return parts.join(', ');
@@ -253,6 +253,7 @@ recurrence.Recurrence.prototype = {
         this.exrules = recurrence.array.from(options.exrules || []);
         this.rdates = recurrence.array.from(options.rdates || []);
         this.exdates = recurrence.array.from(options.exdates || []);
+        this.custom_rrules = recurrence.array.from(options.custom_rrules || [])
     },
 
     copy: function() {
@@ -264,7 +265,10 @@ recurrence.Recurrence.prototype = {
             'rdates': recurrence.array.foreach(
                 this.rdates, function(item) {return item.copy();}),
             'exdates': recurrence.array.foreach(
-                this.exdates, function(item) {return item.copy();})
+                this.exdates, function(item) {return item.copy();}),
+            'custom_rrules': recurrence.array.foreach(
+                this.custom_rrules, function(item) {return item.copy();}
+            )
         });
     },
 
@@ -348,7 +352,7 @@ recurrence.DateFormat.prototype = {
         if (this.data.getHours() == 0)
             return 12;
         else
-            return this.data.getHours() - 12;
+            return this.data.getHours() ;
         return this.data.getHours();
     },
 
@@ -675,6 +679,10 @@ recurrence.serialize = function(rule_or_recurrence) {
         obj.exdates, function(item) {
             items.push(['EXDATE', serialize_dt(item)]);
         });
+    recurrence.array.foreach(
+        obj.custom_rrules, function(item) {
+            items.push(['CUSTOM', item])
+        });
 
     return map_to_property(items).join('\n');
 };
@@ -709,15 +717,14 @@ recurrence.deserialize = function(text) {
     var exrules = [];
     var rdates = [];
     var exdates = [];
+    var custom_rrules = []
 
-    var pattern = /(DTSTART|DTEND|RRULE|EXRULE|RDATE|EXDATE)[^:]*:(.*)/g;
+    var pattern = /(DTSTART|DTEND|RRULE|EXRULE|RDATE|EXDATE|CUSTOM)[^:]*:(.*)/g;
     var tokens = text.match(pattern) || [];
-
     recurrence.array.foreach(
         tokens, function(token) {
             var label = token.split(':', 2)[0];
             var param_text = token.split(':', 2)[1];
-
             if (param_text.indexOf('=') < 0) {
                 var params = param_text;
             } else {
@@ -783,13 +790,18 @@ recurrence.deserialize = function(text) {
                 rdates.push(deserialize_dt(params));
             } else if (label == 'EXDATE') {
                 exdates.push(deserialize_dt(params));
+            } else if (label == 'CUSTOM') {
+                custom_rrules.push(
+                    token.split(':').slice(1).join(':')
+                )
             }
         });
 
     return new recurrence.Recurrence({
         'dtstart': dtstart, 'dtend': dtend,
         'rrules': rrules, 'exrules': exrules,
-        'rdates': rdates, 'exdates': exdates
+        'rdates': rdates, 'exdates': exdates,
+        'custom_rrules': custom_rrules
     });
 };
 
@@ -923,6 +935,15 @@ recurrence.func = {
             return func.apply(
                 object, args.concat(recurrence.array.from(arguments)));
         }
+    },
+
+    check_syntax_rrule: function (rrule) {
+        return $.get('/api/syntax_rrule/', { rrule: rrule })
+        .then(function(response) {
+          return response.status === 'success';
+        }).catch((err) => {
+            return false
+        })
     }
 };
 

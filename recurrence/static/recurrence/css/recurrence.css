@@ -357,3 +357,19 @@ display: block;
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
+
+div.error_panel {
+    border: 1px solid red !important;
+    border-radius: 3px !important;
+}
+
+input.error_field {
+    border: 1px solid red !important;
+    border-radius: 3px !important;
+}
+
+.add-custom-rrule {
+    padding-left: 1em;
+    margin-left: 1em;
+    border-left: 1px solid #ddd;
+}

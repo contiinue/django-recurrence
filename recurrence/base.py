@@ -17,6 +17,8 @@ import dateutil.rrule
 from dateutil import tz
 
 from django.utils import dateformat
+from dateutil.rrule import rrulestr
+
 from django.utils.timezone import get_current_timezone, is_aware, is_naive, make_aware
 from django.utils.translation import gettext as _, pgettext as _p
 
@@ -294,7 +296,7 @@ class Recurrence:
     """
     def __init__(
         self, dtstart=None, dtend=None, rrules=(), exrules=(),
-            rdates=(), exdates=(), include_dtstart=True
+            rdates=(), exdates=(), include_dtstart=True, custom_rrules=(),
     ):
         """
         Create a new recurrence.
@@ -312,6 +314,7 @@ class Recurrence:
         self.rdates = list(rdates)
         self.exdates = list(exdates)
         self.include_dtstart = include_dtstart
+        self.custom_rrules = custom_rrules
 
     def __iter__(self):
         return self.occurrences()
@@ -560,6 +563,10 @@ class Recurrence:
         for exrule in self.exrules:
             rruleset.exrule(exrule.to_dateutil_rrule(dtstart, dtend, cache))
 
+        if self.custom_rrules:
+            custom_rrules = rrulestr('\n'.join(self.custom_rrules))
+            rruleset.rrule(custom_rrules)
+
         if include_dtstart and dtstart is not None:
             rruleset.rdate(dtstart)
         for rdate in self.rdates:
@@ -580,7 +587,6 @@ class Recurrence:
 
         if cache:
             self._cache[dtstart] = rruleset
-
         return rruleset
 
 
@@ -825,6 +831,14 @@ def validate(rule_or_recurrence):
         list(map(lambda dt: validate_dt(dt), obj.exdates))
 
 
+def check_valid_rrule(text_rrule: str) -> bool:
+    try:
+        rrulestr(text_rrule)
+        return True
+    except ValueError:
+        return False
+
+
 def serialize(rule_or_recurrence):
     """
     Serialize a `Rule` or `Recurrence` instance.
@@ -915,6 +929,9 @@ def serialize(rule_or_recurrence):
     for exdate in obj.exdates:
         items.append((u'EXDATE', serialize_dt(exdate)))
 
+    for custom_rrule in obj.custom_rrules:
+        items.append(('CUSTOM', custom_rrule))
+
     return u'\n'.join(u'%s:%s' % i for i in items)
 
 
@@ -999,12 +1016,11 @@ def deserialize(text, include_dtstart=True):
         return datetime.datetime(
             dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
 
-    dtstart, dtend, rrules, exrules, rdates, exdates = None, None, [], [], [], []
+    dtstart, dtend, rrules, exrules, rdates, exdates, custom_rrules = None, None, [], [], [], [], []
 
     tokens = re.compile(
-        u'(DTSTART|DTEND|RRULE|EXRULE|RDATE|EXDATE)[^:]*:(.*)',
+        u'(DTSTART|DTEND|RRULE|EXRULE|RDATE|EXDATE|CUSTOM)[^:]*:(.*)',
         re.MULTILINE).findall(text)
-
     if not tokens and text:
         tokens = old_format_support(text)
 
@@ -1090,8 +1106,11 @@ def deserialize(text, include_dtstart=True):
         elif label == u'EXDATE':
             for item in param_text.split(','):
                 exdates.append(deserialize_dt(item))
+        elif label == 'CUSTOM':
+            if check_valid_rrule(param_text):
+                custom_rrules.append(param_text)
 
-    return Recurrence(dtstart, dtend, rrules, exrules, rdates, exdates, include_dtstart)
+    return Recurrence(dtstart, dtend, rrules, exrules, rdates, exdates, include_dtstart, custom_rrules)
 
 
 def rule_to_text(rule, short=False):

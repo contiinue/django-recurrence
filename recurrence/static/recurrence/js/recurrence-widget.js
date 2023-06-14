@@ -3,6 +3,8 @@ if (!recurrence)
 
 recurrence.widget = {};
 
+let CheckRruleSyntaxTimer;
+const TIME_TO_CHECK_SYNTAX_RRULE = 400
 
 recurrence.widget.Grid = function(cols, rows) {
     this.init(cols, rows);
@@ -53,230 +55,55 @@ recurrence.widget.Grid.prototype = {
 };
 
 
-recurrence.widget.Calendar = function(date, options) {
-    this.init(date, options);
+recurrence.widget.CustomInputSelector = function(custom_rrule, options) {
+    this.init(custom_rrule, options);
 };
-recurrence.widget.Calendar.prototype = {
-    init: function(date, options) {
-        this.date = date || recurrence.widget.date_today();
-        this.month = this.date.getMonth();
-        this.year = this.date.getFullYear();
+
+recurrence.widget.CustomInputSelector.prototype = {
+    init: function(custom_rrule, options) {
+        this.disabled = false;
+        this.custom_rrule = custom_rrule;
         this.options = options || {};
 
         if (this.options.onchange)
             this.onchange = this.options.onchange;
-        if (this.options.onclose)
-            this.onclose = this.options.onclose;
 
         this.init_dom();
-        this.show_month(this.year, this.month);
     },
 
     init_dom: function() {
-        var calendar = this;
+        var custom_input_selector = this;
 
-        // navigation
 
-        var remove = recurrence.widget.e('a', {
-            'class': 'remove',
-            'href': 'javascript:void(0)',
-            'title': recurrence.display.labels.remove,
-            'onclick': function() {
-                calendar.close();
-            }
-        }, '&times;');
-        var year_prev = recurrence.widget.e(
-            'a', {
-                'href': 'javascript:void(0)', 'class': 'prev-year',
-                'onclick': function() {calendar.show_prev_year();}},
-            '&lt;&lt;');
-        var year_next = recurrence.widget.e(
-            'a', {
-                'href': 'javascript:void(0)', 'class': 'next-year',
-                'onclick': function() {calendar.show_next_year();}},
-            '&gt;&gt;');
-        var month_prev = recurrence.widget.e(
-            'a', {
-                'href': 'javascript:void(0)', 'class': 'prev-month',
-                'onclick': function() {calendar.show_prev_month();}},
-            '&lt;');
-        var month_next = recurrence.widget.e(
-            'a', {
-                'href': 'javascript:void(0)', 'class': 'next-month',
-                'onclick': function() {calendar.show_next_month();}},
-            '&gt;');
-        var month_label = recurrence.widget.e(
-            'span', {'class': 'recurrence-label'},
-            recurrence.display.months[this.month]);
+        var custom_input_field = recurrence.widget.e(
+            'input',
+            {'class': 'form-control w-100', 
+            'oninput': function() {custom_input_selector.set_custom_input(this.value.toUpperCase())},
+            'value': this.custom_rrule}
+        )
 
-        var header_elements = [
-            year_prev, month_prev, month_label, month_next, year_next];
-        var header_grid = new recurrence.widget.Grid(header_elements.length, 1);
-        recurrence.array.foreach(header_elements, function(item, i) {
-            header_grid.cells[i].appendChild(item);
-            recurrence.widget.add_class(
-                header_grid.cells[i], item.className);
-            });
-        recurrence.widget.add_class(header_grid.elements.root, 'navigation');
+        var custom_input_container = recurrence.widget.e(
+            'div', {'class': 'custom_input_container'}, [custom_input_field]
+        )
 
-        // core
-
-        var calendar_year = recurrence.widget.e(
-            'div', {'class': 'year'}, this.year);
-        var calendar_navigation = header_grid.elements.root;
-        // var calendar_week = week_grid.elements.root;
-        var calendar_body = recurrence.widget.e('div', {'class': 'body'});
-        var calendar_footer = recurrence.widget.e('div', {'class': 'footer'});
-
-        var td = recurrence.widget.e(
-            'td', {},
-            [remove, calendar_year, calendar_navigation,
-             calendar_body, calendar_footer]);
-        var tr = recurrence.widget.e('tr', {}, [td]);
-        var tbody = recurrence.widget.e('tbody', {}, [tr]);
         var root = recurrence.widget.e(
-            'table', {'class': 'recurrence-calendar hidden'}, [tbody]);
+            'span', {'class': 'date-selector'},
+            [custom_input_container]);
 
         this.elements = {
             'root': root,
-            'year': calendar_year,
-            'year_prev': year_prev,
-            'year_next': year_next,
-            'month_prev': month_prev,
-            'month_next': month_next,
-            'month_label': month_label,
-            'calendar_body': calendar_body
+            'custom_input_field': custom_input_field,
         };
     },
 
-    get_month_grid: function(year, month) {
-        var calendar = this;
 
-        var dt = new Date(year, month, 1);
-        var start = dt.getDay();
-        var days = recurrence.date.days_in_month(dt);
-        var rows = Math.ceil((days + start) / 7) + 1;
-        var grid = new recurrence.widget.Grid(7, rows);
-
-        var number = 1;
-        recurrence.array.foreach(
-            grid.cells, function(cell, i) {
-                var cell = grid.cells[i];
-                if (i < 7) {
-                    var weekday_number = i - 1;
-                    if (weekday_number < 0)
-                        weekday_number = 6;
-                    else if (weekday_number > 6)
-                        weekday_number = 0;
-                    cell.innerHTML = recurrence.display.weekdays_oneletter[
-                        weekday_number];
-                    recurrence.widget.add_class(cell, 'header');
-                } else if (i - 7 < start || number > days) {
-                    recurrence.widget.add_class(cell, 'empty');
-                } else {
-                    recurrence.widget.add_class(cell, 'day');
-                    if (this.date.getDate() == number &&
-                        this.date.getFullYear() == dt.getFullYear() &&
-                        this.date.getMonth() == dt.getMonth())
-                        recurrence.widget.add_class(cell, 'active');
-                    cell.innerHTML = number;
-                    number = number + 1;
-                    cell.onclick = function () {
-                        calendar.set_date(
-                            calendar.year, calendar.month,
-                            parseInt(this.innerHTML, 10));
-                    };
-                }
-            }, this);
-
-        return grid;
-    },
-
-    show_month: function(year, month) {
-        if (this.elements.calendar_body.childNodes.length)
-            this.elements.calendar_body.removeChild(
-                this.elements.calendar_body.childNodes[0]);
-        this.elements.month_grid = this.get_month_grid(year, month);
-        this.elements.calendar_body.appendChild(
-            this.elements.month_grid.elements.root);
-        this.elements.month_label.firstChild.nodeValue = (
-            recurrence.display.months[this.month]);
-        this.elements.year.firstChild.nodeValue = this.year;
-    },
-
-    show_prev_year: function() {
-        this.year = this.year - 1;
-        this.show_month(this.year, this.month);
-    },
-
-    show_next_year: function() {
-        this.year = this.year + 1;
-        this.show_month(this.year, this.month);
-    },
-
-    show_prev_month: function() {
-        this.month = this.month - 1;
-        if (this.month < 0) {
-            this.month = 11;
-            this.year = this.year - 1;
-        }
-        this.show_month(this.year, this.month);
-    },
-
-    show_next_month: function() {
-        this.month = this.month + 1;
-        if (this.month > 11) {
-            this.month = 0;
-            this.year = this.year + 1;
-        }
-        this.show_month(this.year, this.month);
-    },
-
-    set_date: function(year, month, day) {
-        if (year != this.date.getFullYear() ||
-            month != this.date.getMonth() ||
-            day != this.date.getDate()) {
-
-            this.date.setTime(new Date(year, month, day).getTime());
-
-            recurrence.array.foreach(
-                this.elements.month_grid.cells, function(cell) {
-                    if (recurrence.widget.has_class(cell, 'day')) {
-                        var number = parseInt(cell.innerHTML, 10);
-                        if (number == day) {
-                            recurrence.widget.add_class(cell, 'active');
-                        } else {
-                            recurrence.widget.remove_class(cell, 'active');
-                        }
-                    }
-                });
-
-            if (this.onchange)
-                this.onchange(this.date);
-        }
-    },
-
-    set_position: function(x, y) {
-        this.elements.root.style.left = x + 'px';
-        this.elements.root.style.top = y + 'px';
-    },
-
-    show: function() {
-        recurrence.widget.remove_class(this.elements.root, 'hidden');
-    },
-
-    hide: function() {
-        recurrence.widget.add_class(this.elements.root, 'hidden');
-    },
-
-    close: function() {
-        if (this.elements.root.parentNode) {
-            this.elements.root.parentNode.removeChild(this.elements.root);
-            if (this.onclose)
-                this.onclose();
+    set_custom_input: function(custom_rrule) {
+        this.custom_rrule = custom_rrule || ' '
+        if (this.onchange) {
+            this.onchange(this.custom_rrule);
         }
     }
-};
+}
 
 
 recurrence.widget.DateSelector = function(date, options) {
@@ -297,92 +124,40 @@ recurrence.widget.DateSelector.prototype = {
 
     init_dom: function() {
         var dateselector = this;
-
-        if (this.date)
-            var date_value = recurrence.date.format(this.date, '%Y-%m-%d');
+        if (this.date) 
+            var date_value = recurrence.date.format(this.date, '%Y-%m-%dT%h:%i');
         else
             var date_value = '';
         var date_field = recurrence.widget.e(
             'input', {
                 'class': 'date-field input_field_f input_field_f_sm', 'size': 10,
+                'type': 'datetime-local',
                 'value': date_value,
                 'onchange': function() {dateselector.set_date(this.value);}});
-        var calendar_button = recurrence.widget.e(
-            'a', {
-                'class': 'calendar-button',
-                'href': 'javascript:void(0)',
-                'title': recurrence.display.labels.calendar,
-                'onclick': function() {
-                    if (!dateselector.disabled)
-                        dateselector.show_calendar();
-                }
-            },
-            '&nbsp;&nbsp;&nbsp;&nbsp;');
+
         var root = recurrence.widget.e(
             'span', {'class': 'date-selector'},
-            [date_field, calendar_button]);
+            [date_field]);
 
         this.elements = {
             'root': root,
             'date_field': date_field,
-            'calendar_button': calendar_button
         };
-    },
-
-    show_calendar: function() {
-        var dateselector = this;
-
-        var calendar_blur = function(event) {
-            var element = event.target;
-            var is_in_dom = recurrence.widget.element_in_dom(
-                element, dateselector.calendar.elements.root);
-            if (!is_in_dom &&
-                element != dateselector.elements.calendar_button) {
-                // clicked outside of calendar
-                dateselector.calendar.close();
-                if (window.detachEvent)
-                    window.detachEvent('onclick', calendar_blur);
-                else
-                    window.removeEventListener('click', calendar_blur, false);
-            }
-        };
-
-        if (!this.calendar) {
-            this.calendar = new recurrence.widget.Calendar(
-                new Date((this.date || recurrence.widget.date_today()).valueOf()), {
-                    'onchange': function() {
-                        dateselector.set_date(
-                            recurrence.date.format(this.date, '%Y-%m-%d'));
-                        dateselector.calendar.close();
-                    },
-                    'onclose': function() {
-                        if (window.detachEvent)
-                            window.detachEvent('onclick', calendar_blur);
-                        else
-                            window.removeEventListener(
-                                'click', calendar_blur, false);
-                        dateselector.hide_calendar();
-                    }
-                });
-            document.body.appendChild(this.calendar.elements.root);
-
-            this.calendar.show();
-            this.set_calendar_position();
-
-            if (window.attachEvent)
-                window.attachEvent('onclick', calendar_blur);
-            else
-                window.addEventListener('click', calendar_blur, false);
-        }
     },
 
     set_date: function(datestring) {
-        var tokens = datestring.split('-');
-        var year = parseInt(tokens[0], 10);
-	var month = parseInt(tokens[1], 10) - 1;
-        var day = parseInt(tokens[2], 10);
-        var dt = new Date(year, month, day);
+        var datetimeTokens = datestring.split('T');
 
+        var dateTokens = datetimeTokens[0].split('-');
+        var year = parseInt(dateTokens[0], 10);
+        var month = parseInt(dateTokens[1], 10) - 1;
+        var day = parseInt(dateTokens[2], 10);
+        
+        var timeTokens = datetimeTokens[1].split(':');
+        var hour = parseInt(timeTokens[0], 10);
+        var minute = parseInt(timeTokens[1], 10);
+
+        var dt = new Date(year, month, day, hour, minute);
         if (String(dt) == 'Invalid Date' || String(dt) == 'NaN') {
             if (this.date && !this.options.allow_null) {
                 this.elements.date_field.value = recurrence.date.format(
@@ -398,12 +173,14 @@ recurrence.widget.DateSelector.prototype = {
             if (!this.date ||
                 (year != this.date.getFullYear() ||
                  month != this.date.getMonth() ||
-                 day != this.date.getDate())) {
+                 day != this.date.getDate()) ||
+                 hour != this.date.getHours() ||
+                 minute != this.date.getMinutes()) {
 
                 if (!this.date)
                     this.date = recurrence.widget.date_today();
 
-                this.date.setTime(new Date(year, month, day).getTime());
+                this.date.setTime(new Date(year, month, day, hour, minute).getTime());
 
                 this.elements.date_field.value = datestring;
 
@@ -467,6 +244,8 @@ recurrence.widget.Widget.prototype = {
 
         this.default_freq = options.default_freq || recurrence.WEEKLY;
 
+        this.panel_id = 1
+
         this.init_dom();
         this.init_panels();
         recurrence.widget.default_panel();
@@ -475,8 +254,6 @@ recurrence.widget.Widget.prototype = {
     init_dom: function() {
         var widget = this;
 
-        // var plus = recurrence.widget.e(
-        //     'span', {'title': 'Добавить правило', 'class': 'plus', 'onclick': function() {widget.add_rule();}}, '+');
         var label = recurrence.widget.e(
             'span', {'class': 'recurrence-label p-4'}, 'Однократно');
 
@@ -513,6 +290,15 @@ recurrence.widget.Widget.prototype = {
         recurrence.widget.add_class(add_date.elements.root, 'add-date');
         control.appendChild(add_date.elements.root);
 
+
+        var add_custom_rrule = new recurrence.widget.AddButton(
+            recurrence.display.labels.add_custom_rrule, 
+            {'onclick': function () {widget.add_custom_rrule();}}
+        )
+        recurrence.widget.add_class(add_custom_rrule.elements.root, 'add-custom-rrule');
+        control.appendChild(add_custom_rrule.elements.root);
+
+
         this.elements = {
             'root': root,
             'panels': panels,
@@ -541,6 +327,10 @@ recurrence.widget.Widget.prototype = {
         recurrence.array.foreach(
             this.data.exdates, function(item) {
                 this.add_date_panel(recurrence.widget.EXCLUSION, item);
+            }, this);
+        recurrence.array.foreach(
+            this.data.custom_rrules, function(item) {
+                this.add_custom_rrule_panel(recurrence.widget.EXCLUSION, item);
             }, this);
     },
 
@@ -585,6 +375,27 @@ recurrence.widget.Widget.prototype = {
         return panel;
     },
 
+    add_custom_rrule_panel: function(mode, custom_rrule) {
+        var panel = new recurrence.widget.Panel(this, {id_panel: this.get_id_panel()});
+        var form = new recurrence.widget.CustomRruleForm(panel, mode, custom_rrule);
+
+        panel.onexpand = function() {
+            if (panel.widget.selected_panel)
+                if (panel.widget.selected_panel != this)
+                    panel.widget.selected_panel.collapse();
+            panel.widget.selected_panel = this;
+        };
+        panel.onremove = function() {
+            recurrence.widget.default_panel()
+            form.remove();
+        };
+
+        this.elements.panels.appendChild(panel.elements.root);
+        this.panels.push(panel);
+        this.update();
+        return panel;
+    },
+
     add_rule: function(rule) {
         var rule = rule || new recurrence.Rule(this.default_freq);
         this.data.rrules.push(rule);
@@ -595,6 +406,17 @@ recurrence.widget.Widget.prototype = {
         var date = date || recurrence.widget.date_today();
         this.data.rdates.push(date);
         this.add_date_panel(recurrence.widget.INCLUSION, date).expand();
+    },
+
+    add_custom_rrule: function(custom_rrule) {
+        let custom_rrulee = custom_rrule || ' '
+        this.data.custom_rrules.push(custom_rrulee);
+        this.add_custom_rrule_panel(recurrence.widget.INCLUSION, custom_rrulee).expand();
+    },
+
+    get_id_panel: function() {
+        this.panel_id += 1
+        return this.panel_id
     },
 
     update: function() {
@@ -659,6 +481,10 @@ recurrence.widget.Panel.prototype = {
         if (this.options.oncollapse)
             this.oncollapse = this.options.oncollapse;
 
+        if (this.options.id_panel) {
+            this.id_panel = this.options.id_panel
+        }
+
         this.init_dom();
     },
 
@@ -686,6 +512,7 @@ recurrence.widget.Panel.prototype = {
              'div', {'class': 'header'}, [remove, label]);
         var body = recurrence.widget.e(
             'div', {'class': 'body'});
+            
         var root = recurrence.widget.e(
             'div', {'class': 'panel'}, [header, body]);
 
@@ -1683,6 +1510,99 @@ recurrence.widget.RuleDailyForm.prototype = {
     }
 };
 
+recurrence.widget.CustomRruleForm = function(panel, mode, custom_rrule) {
+    this.init(panel, mode, custom_rrule);
+};
+recurrence.widget.CustomRruleForm.prototype = {
+    init: function(panel, mode, custom_rrule) {
+        this.collapsed = true;
+        this.panel = panel;
+        this.mode = mode;
+        this.custom_rrule = custom_rrule;
+
+        this.init_dom();
+    },
+
+    init_dom: function() {
+        var form = this;
+
+        var custom_rrule_selector = new recurrence.widget.CustomInputSelector(
+            this.custom_rrule, {'onchange': function(custom_rrule) {form.update(custom_rrule);}}
+        );
+        
+        var custom_rrule_input_label = recurrence.widget.e(
+            'span', {'class': 'recurrence-label col-sm-2 col-form'}, recurrence.display.labels.rule + ':');
+        
+        var custom_rrule_input_container = recurrence.widget.e(
+            'div', {'class': 'custom_rrule_input_container'}, [custom_rrule_input_label, custom_rrule_selector.elements.root]
+        )
+
+        var custom_rrule_error = recurrence.widget.e(
+            'span', {'class': 'recurrence-label col-sm-2 col-form help-block text-red',
+            'error_field_id': this.panel.id_panel}, 'Ошибка синтаксиса!'
+        );
+
+        var root = recurrence.widget.e(
+            'form', {'class': 'date'}, [custom_rrule_input_container]
+        );
+
+        // init dom
+        this.panel.set_label(this.get_display_text());
+        this.panel.set_body(root);
+        this.elements = {
+            'root': root,
+            'custom_rrule_input_container': custom_rrule_input_container,
+            'custom_rrule_error': custom_rrule_error
+        };
+
+    },
+
+    get_display_text: function() {
+        return `rrule: ${this.custom_rrule}`
+    },
+
+    set_syntax_error_panel: function(is_valid, custom_rrule) {
+        if (is_valid || !custom_rrule) {
+            recurrence.widget.remove_class(this.panel.elements.root, 'error_panel');
+            $(`[error_field_id="${this.panel.id_panel}"]`).first().remove()
+        }
+        else {
+            recurrence.widget.add_class(this.panel.elements.root, 'error_panel');
+            this.elements.custom_rrule_input_container.appendChild(this.elements.custom_rrule_error)
+        }
+        
+    },
+
+    update: function(custom_rrule) {
+        clearTimeout(CheckRruleSyntaxTimer);
+        
+        var index_update = this.panel.widget.data.custom_rrules.indexOf(this.custom_rrule)
+        this.custom_rrule = custom_rrule
+        this.panel.widget.data.custom_rrules[index_update] = custom_rrule
+        this.panel.set_label(this.get_display_text());
+        this.panel.widget.update();
+
+        CheckRruleSyntaxTimer = setTimeout(() => {
+            if (custom_rrule) {
+                recurrence.func.check_syntax_rrule(custom_rrule).then((result) => {
+                    this.set_syntax_error_panel(result, custom_rrule)
+                })
+            } else {
+                this.set_syntax_error_panel(true, custom_rrule)
+            }
+            
+        }, TIME_TO_CHECK_SYNTAX_RRULE)
+    },
+
+    remove: function() {
+        var parent = this.elements.root.parentNode;
+        if (parent)
+            parent.removeChild(this.elements.root);
+        recurrence.array.remove(this.panel.widget.data.custom_rrules, this.custom_rrule);
+        this.panel.widget.update();
+    }
+
+}
 
 recurrence.widget.DateForm = function(panel, mode, date) {
     this.init(panel, mode, date);
@@ -1742,7 +1662,7 @@ recurrence.widget.DateForm.prototype = {
     },
 
     get_display_text: function() {
-        var text = recurrence.date.format(this.date, pgettext('date', '%l, %F %j, %Y'));
+        var text = recurrence.date.format(this.date, pgettext('date', '%l, %F %j, %Y %h:%i'));
         if (this.mode == recurrence.widget.EXCLUSION)
             text = recurrence.display.mode.exclusion + ' ' + text;
         return recurrence.string.capitalize(text);
@@ -1923,8 +1843,10 @@ recurrence.display.labels = {
     'repeat_until': gettext('Repeat until'),
     'exclude_occurrences': gettext('Exclude these occurences'),
     'exclude_date': gettext('Exclude this date'),
+    'rule': gettext('Custom rrule'),
     'add_rule': gettext('Add rule'),
     'add_date': gettext('Add date'),
+    'add_custom_rrule': gettext('Add a rule in rrule format'),
     'remove': gettext('Remove'),
     'calendar': gettext('Calendar')
 };
