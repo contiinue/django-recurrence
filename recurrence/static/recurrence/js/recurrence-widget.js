@@ -1526,6 +1526,8 @@ recurrence.widget.CustomRruleForm.prototype = {
     init_dom: function() {
         var form = this;
 
+        let text_info = 'Правила записываются в виде iCalendar (RFC 5545). Синтаксис можно посмотреть в документации'
+
         var custom_rrule_selector = new recurrence.widget.CustomInputSelector(
             this.custom_rrule, {'onchange': function(custom_rrule) {form.update(custom_rrule);}}
         );
@@ -1542,8 +1544,13 @@ recurrence.widget.CustomRruleForm.prototype = {
             'error_field_id': this.panel.id_panel}, 'Ошибка синтаксиса!'
         );
 
+        var info_rrule = recurrence.widget.e(
+            'i', {'class': 'text-info fas fa-question-circle d-flex justify-content-end align-items-start', 'title': text_info,
+            'onclick': () => {window.open('https://icalendar.org/RFC-Specifications/iCalendar-RFC-5545/', '_blank');}}
+        )
+
         var root = recurrence.widget.e(
-            'form', {'class': 'date'}, [custom_rrule_input_container]
+            'form', {'class': 'date'}, [info_rrule, custom_rrule_input_container]
         );
 
         // init dom
@@ -1846,7 +1853,7 @@ recurrence.display.labels = {
     'rule': gettext('Custom rrule'),
     'add_rule': gettext('Add rule'),
     'add_date': gettext('Add date'),
-    'add_custom_rrule': gettext('Add a rule in rrule format'),
+    'add_custom_rrule': gettext('Добавить RRule'),
     'remove': gettext('Remove'),
     'calendar': gettext('Calendar')
 };

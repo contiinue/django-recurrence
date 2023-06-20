@@ -833,9 +833,8 @@ def validate(rule_or_recurrence):
 
 def check_valid_rrule(text_rrule: str) -> bool:
     try:
-        rrulestr(text_rrule)
-        return True
-    except ValueError:
+        return bool(rrulestr(text_rrule).after(datetime.datetime.now()))
+    except (ValueError, TypeError):
         return False
 
 
