@@ -31,6 +31,9 @@ YEARLY, MONTHLY, WEEKLY, DAILY, HOURLY, MINUTELY, SECONDLY = range(7)
  SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER) = range(1, 13)
 
 
+OLD_FORMATS_RULES = ['ONCE', 'WEEKLY', 'MONTHLY', 'DAILY', 'HOURLY']
+
+
 class Rule:
     """
     A recurrence rule.
@@ -960,12 +963,23 @@ def deserialize(text, include_dtstart=True):
     :Returns:
         A `Recurrence` instance.
     """
+    def replace_old_rrule_to_supported(match):
+        old_format: str = match.string[match.start():match.end()].strip()
+        if old_format != 'ONCE':
+            return f'\nRRULE:FREQ={old_format}'
 
-    def old_format_support(text: str) -> list:
-        if text:
-            return [('RRULE', f'FREQ={text}'), ] if text != 'ONCE' else []
-        else:
-            raise exceptions.DeserializationError('malformed data')
+    def old_format_support(text: str) -> str:
+        """
+        example:
+        >>> text = old_format_support("RRULE:FREQ=WEEKLY MONTHLY ONCE")
+        >>> text == "RRULE:FREQ=WEEKLY RRULE:FREQ=MONTHLY" # True
+        """
+        patterns = r"|".join([f"\n({pattern})" for pattern in OLD_FORMATS_RULES])
+        return re.sub(
+            patterns,
+            replace_old_rrule_to_supported,
+            text
+        )
 
     def deserialize_dt(text):
         """
@@ -1017,11 +1031,13 @@ def deserialize(text, include_dtstart=True):
 
     dtstart, dtend, rrules, exrules, rdates, exdates, custom_rrules = None, None, [], [], [], [], []
 
+    text = old_format_support(text)
     tokens = re.compile(
         u'(DTSTART|DTEND|RRULE|EXRULE|RDATE|EXDATE|CUSTOM)[^:]*:(.*)',
         re.MULTILINE).findall(text)
+
     if not tokens and text:
-        tokens = old_format_support(text)
+        raise exceptions.DeserializationError('malformed data')
 
     for label, param_text in tokens:
         if not param_text:
